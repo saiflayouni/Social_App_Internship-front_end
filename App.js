@@ -1,20 +1,47 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import LoginScreen from "./screens/LoginScreen";
+import OnboardingScreen from "./screens/OnboardingScreen";
+import { Header } from "@react-navigation/stack";
+//import AsyncStorage from "@react-native-async-storage/async-storage";
+import SignupScreen from "./screens/SignupScreen";
+import Providers from "./navigation";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const AppStack = createStackNavigator();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => {
+  return <Providers />;
+};
+
+/*
+  const [isFirstLaunch, setIsFirstLaunch] = React.useState(null);
+  useEffect(() => {
+    AsyncStorage.getItem("alreadyLaunched").then((value) => {
+      if (value == null) {
+        AsyncStorage.setItem("alreadyLaunched", "true");
+        setIsFirstLaunch(false);
+      } else {
+        setIsFirstLaunch(true);
+      }
+    });
+  }, []);
+
+  if (isFirstLaunch === null) {
+    return null;
+  } else if (isFirstLaunch === true) {
+    return (
+      <NavigationContainer>
+        <AppStack.Navigator headerMode="none">
+          <AppStack.Screen name="Onboarding" component={OnboardingScreen} />
+          <AppStack.Screen name="Login" component={LoginScreen} />
+          <AppStack.Screen name="Signup" component={SignupScreen} />
+        </AppStack.Navigator>
+      </NavigationContainer>
+    );
+  } else {
+    return <LoginScreen />;
+  }
+};
+*/
+export default App;
